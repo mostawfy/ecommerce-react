@@ -1,0 +1,32 @@
+.products {
+  padding-top: 7rem;
+}
+
+.product {
+  height: 380px;
+  overflow: hidden;
+}
+
+.product:hover {
+  transform: scale(1.1);
+}
+
+.product-img {
+  max-height: 50%;
+}
+
+.product-img img {
+  height: 180px;
+  width: 200px;
+}
+
+.product-title {
+  height: 15%;
+}
+
+.cart-btn {
+  width: 100%;
+  background-color: #c3c2d3;
+  border: none;
+  z-index: 10;
+}

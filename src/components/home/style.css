@@ -1,0 +1,14 @@
+.hero {
+  background: url(../../assets/imgs/header-bg2.jpg) no-repeat center
+    center/cover;
+}
+
+h1 {
+  width: 60%;
+}
+
+h1 span {
+  font-family: "Dancing Script", cursive;
+  text-transform: capitalize;
+  color: #555b55;
+}
