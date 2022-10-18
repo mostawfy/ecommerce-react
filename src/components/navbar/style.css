@@ -1,9 +1,14 @@
 .logo {
   font-family: "Dancing Script", cursive;
   font-size: 30px;
-  color: #c3c2d3;
+  color: #fff;
 }
 
 .navbar {
   z-index: 100;
+}
+
+.cart-link span {
+  background-color: purple;
+  color: #fff;
 }

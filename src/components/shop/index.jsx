@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const globalCart = useSelector((state) => state.cartStore);
+  const dispatch = useDispatch();
+
+  console.log(globalCart);
 
   useEffect(() => {
     getProducts();
@@ -17,6 +23,15 @@ const Shop = () => {
         setProducts(json);
         setLoading(false);
       });
+  };
+
+  const addCart = (item) => {
+    if (
+      !globalCart.cartList.filter((product) => product.id === item.id).length
+    ) {
+      console.log(item.id);
+      dispatch(addToCart(item));
+    }
   };
 
   if (loading) {
@@ -42,13 +57,16 @@ const Shop = () => {
                     <div className="product-price text-muted  mb-auto">
                       {product.price} EGP
                     </div>
-                    <button className="cart-btn btn btn-dark rounded-0 text-white py-3">
+                    <button
+                      onClick={() => addCart(product)}
+                      className="cart-btn btn btn-dark rounded-0 text-white py-3"
+                    >
                       Add to cart
                     </button>
                     <Link
                       to={`/shop/${product.id}`}
                       key={product.id}
-                      className="position-absolute w-100 h-100"
+                      className={"position-absolute w-100 h-100"}
                     ></Link>
                   </div>
                 </div>

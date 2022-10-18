@@ -1,0 +1,12 @@
+.cart {
+  padding-top: 7rem;
+}
+
+.proceed-btn {
+  background-color: purple;
+  color: white;
+}
+
+.proceed-btn:hover {
+  border-color: purple;
+}
