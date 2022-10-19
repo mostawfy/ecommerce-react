@@ -27,6 +27,16 @@ const Navbar = () => {
                 <span className="badge ms-1">{globalCartCount}</span>
               </Link>
             </li>
+            <li className="nav-item mx-2">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item mx-2">
+              <Link className="nav-link" to="/register">
+                Register
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

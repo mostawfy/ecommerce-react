@@ -26,7 +26,18 @@
 
 .cart-btn {
   width: 100%;
-  background-color: #c3c2d3;
+  background-color: purple;
   border: none;
   z-index: 10;
+}
+
+.cart-btn:hover {
+  background-color: purple;
+
+  opacity: 0.9;
+}
+
+.cart-btn:disabled {
+  z-index: 10;
+  background-color: grey;
 }

@@ -3,38 +3,29 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import { fetchProducts } from "../../redux/productsSlice";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const globalCart = useSelector((state) => state.cartStore);
+  const globalProducts = useSelector((state) => state.productsStore);
+
   const dispatch = useDispatch();
 
-  console.log(globalCart);
-
   useEffect(() => {
-    getProducts();
+    dispatch(fetchProducts());
+    setProducts(globalProducts.productsList);
   }, []);
-
-  const getProducts = () => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => {
-        setProducts(json);
-        setLoading(false);
-      });
-  };
 
   const addCart = (item) => {
     if (
       !globalCart.cartList.filter((product) => product.id === item.id).length
     ) {
-      console.log(item.id);
       dispatch(addToCart(item));
     }
   };
 
-  if (loading) {
+  if (globalProducts.loading) {
     return (
       <div className="vh-100 d-flex justify-content-center align-items-center">
         <div className="spinner-border" role="status"></div>
@@ -49,7 +40,7 @@ const Shop = () => {
             {products.map((product) => {
               return (
                 <div className="col-md-4">
-                  <div className="product position-relative d-flex flex-column justify-content-center align-items-center border border-1 rounded-3 text-center">
+                  <div className="product position-relative d-flex flex-column justify-content-center align-items-center border border-1 rounded-3 text-center shadow">
                     <div className="product-img mb-3 ">
                       <img src={product.image} alt="" className="img-fluid" />
                     </div>
@@ -60,6 +51,11 @@ const Shop = () => {
                     <button
                       onClick={() => addCart(product)}
                       className="cart-btn btn btn-dark rounded-0 text-white py-3"
+                      disabled={
+                        globalCart.cartList.filter(
+                          (item) => item.id === product.id
+                        ).length
+                      }
                     >
                       Add to cart
                     </button>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice";
 import "./style.css";
@@ -11,13 +11,13 @@ const Cart = () => {
     dispatch(removeFromCart(item));
   };
 
+  const cartItems = globalCart.cartList;
+
   let total = 0;
 
-  globalCart.cartList.map((product) => {
+  cartItems.map((product) => {
     total += product.price;
   });
-
-  const cartItems = globalCart.cartList;
 
   return (
     <div className="cart container">
@@ -39,7 +39,8 @@ const Cart = () => {
               <div className="price">{item.price} EGP</div>
             </div>
             <div className="col-2">
-              Quantity: <input type="number" className="form-control" min="1" />
+              Quantity:{" "}
+              <input type="number" className="form-control" min="1" value="1" />
             </div>
             <div className="col-2">
               Total:
